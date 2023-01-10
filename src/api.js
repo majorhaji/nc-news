@@ -4,8 +4,16 @@ const api = axios.create({
   baseURL: "https://backend-api-project-2.onrender.com",
 });
 
-export default function getArticles() {
+export function getArticles() {
   return api.get("/api/articles").then(({ data: { articles } }) => {
     return articles;
   });
 }
+
+export function getArticleById(article_id) {
+  return api.get(`/api/articles/${article_id}`).then(({ data }) => {
+    return data;
+  });
+}
+
+export default { getArticles, getArticleById };
