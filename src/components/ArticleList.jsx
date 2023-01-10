@@ -13,14 +13,12 @@ const ArticleList = () => {
     getArticles().then((articles) => {
       setArticles(articles);
       setLoading(false);
-    });
+    }).catch(err => console.log(err))
   }, []);
 
-  if (!articles) {
-    return <p className="error">No Articles Found</p>
-  }
+ 
 
-  if(isLoading===true){
+  if(isLoading){
     return(
       <p className="loading">Loading...</p>
     )

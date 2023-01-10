@@ -14,11 +14,9 @@ const Article = () => {
         getArticleById(article_id).then(({article}) => {
             setArticle(article);
             setLoading(false);
-        })
+        }).catch(err => console.log(err))
     }, [])
-    if (!article) {
-        return <p className="error">No Articles Found</p>
-      }
+    
 
       if(isLoading===true){
         return(
