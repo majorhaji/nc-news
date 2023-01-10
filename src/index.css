@@ -105,3 +105,33 @@ h4{
   overflow-wrap: break-word;
   white-space: pre-wrap;
 }
+
+.comment{
+
+  border: solid black 1px;
+  margin: 0px 20px;
+
+  border-radius: 4px;
+  max-width: 850px;
+  background-color: rgb(23, 27, 27);
+  color: rgb(199, 194, 194);
+  display: grid;
+  grid-template-areas: "votes info info"
+  "votes body body"
+  "votes body body";
+  font-size: smaller ;
+
+}
+
+.comment-info{
+  grid-area: info;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-evenly;
+  justify-items: center;
+}
+
+.comment-body{
+  grid-area: body;
+  padding: 20px;
+}

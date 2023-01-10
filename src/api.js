@@ -16,4 +16,10 @@ export function getArticleById(article_id) {
   });
 }
 
-export default { getArticles, getArticleById };
+export function getCommentsById(article_id) {
+  return api.get(`/api/articles/${article_id}/comments`).then(({ data }) => {
+    return data;
+  });
+}
+
+export default { getArticles, getArticleById, getCommentsById };

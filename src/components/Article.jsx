@@ -2,18 +2,21 @@ import {useEffect, useState } from 'react';
 import {useParams} from 'react-router-dom'
 import {getArticleById} from '../api'
 
+import CommentList from './CommentList';
+
 const Article = () => {
 
     let {article_id} = useParams();
 
-    const [article, setArticle] = useState(null);
+    const [article, setArticle] = useState([]);
     const [isLoading, setLoading] = useState(true);
+   
 
     useEffect(() => {
         setLoading(true);
         getArticleById(article_id).then(({article}) => {
-            setArticle(article);
-            setLoading(false);
+          setArticle(article);
+          setLoading(false);
         }).catch(err => console.log(err))
     }, [])
     
@@ -37,7 +40,9 @@ const Article = () => {
                   <p className="created">{article.created_at}</p>
                 </section>
                 <section className="article-body">{article.body}</section>
+                <p className="comment-count">{article.comment_count} comments</p>
               </article>
+              <CommentList article_id={article_id}/>
         </main>
       );
 
