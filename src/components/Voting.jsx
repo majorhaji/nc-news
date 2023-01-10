@@ -7,33 +7,42 @@ const Voting = ({votes, article_id}) => {
   const [upVoteClicked, setUpClicked] = useState();
   const [downVoteClicked, setDownClicked] = useState();
 
-  const handleUpvote = () => {
-    if (!upVoteClicked) {
-      setDownClicked(false);
-      setDownvote("downvote");
-      
-      setUpvote("upvoted");
-      setCurrVote(currVote + 1);
+
+  useEffect(() => {
+}, [currVote])
+const handleUpvote = () => {
+  if (!upVoteClicked) {
+    setDownClicked(false);
+    setDownvote("downvote");
     
-      setUpClicked(true);
+    setUpvote("upvoted");
+    setCurrVote(currVote + 1);
+  
+    setUpClicked(true);
 
-      incrementVotes(article_id, 1);
-    }
-  };
+    incrementVotes(article_id, 1).catch(err => {
+        console.log(err)
+        setCurrVote(currVote-1)
+    })
+  }
+};
 
-  console.log(votes, "<<votes")
-  const handleDownvote = () => {
-    if (!downVoteClicked) {
-      setUpClicked(false);
-      setUpvote("upvote");
+const handleDownvote = () => {
+  if (!downVoteClicked) {
+    setUpClicked(false);
+    setUpvote("upvote");
 
-      setDownvote("downvoted");
-      setCurrVote(currVote - 1);
-    
-      setDownClicked(true);
-      incrementVotes(article_id, -1);
-    }
-  };
+    setDownvote("downvoted");
+    setCurrVote(currVote - 1);
+  
+    setDownClicked(true);
+    incrementVotes(article_id, -1).catch(err => {
+        console.log(err)
+        setCurrVote(currVote+1)
+    })
+  }
+};
+
     return (
         <aside className="votes">
         <span
