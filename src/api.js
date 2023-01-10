@@ -5,15 +5,21 @@ const api = axios.create({
 });
 
 export function getArticles() {
-  return api.get("/api/articles").then(({ data: { articles } }) => {
-    return articles;
-  });
+  return api
+    .get("/api/articles")
+    .then(({ data: { articles } }) => {
+      return articles;
+    })
+    .catch((err) => console.log(err));
 }
 
 export function getArticleById(article_id) {
-  return api.get(`/api/articles/${article_id}`).then(({ data }) => {
-    return data;
-  });
+  return api
+    .get(`/api/articles/${article_id}`)
+    .then(({ data }) => {
+      return data;
+    })
+    .catch((err) => console.log(err));
 }
 
 export default { getArticles, getArticleById };

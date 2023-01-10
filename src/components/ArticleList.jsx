@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import {getArticles} from "../api";
 import {Link} from 'react-router-dom';
 const ArticleList = () => {
-  const [articles, setArticles] = useState(null);
+  const [articles, setArticles] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const date = new Date();
 
@@ -13,12 +13,10 @@ const ArticleList = () => {
     getArticles().then((articles) => {
       setArticles(articles);
       setLoading(false);
-    });
+    }).catch(err => console.log(err))
   }, []);
 
-  if (!articles) {
-    return <p className="error">No Articles Found</p>
-  }
+ 
 
   if(isLoading===true){
     return(

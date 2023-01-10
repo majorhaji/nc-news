@@ -4,9 +4,9 @@ import {getArticleById} from '../api'
 
 const Article = () => {
 
-    let {article_id} = useParams();
+    const {article_id} = useParams();
 
-    const [article, setArticle] = useState(null);
+    const [article, setArticle] = useState([]);
     const [isLoading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -14,11 +14,9 @@ const Article = () => {
         getArticleById(article_id).then(({article}) => {
             setArticle(article);
             setLoading(false);
-        })
+        }).catch(err => console.log(err))
     }, [])
-    if (!article) {
-        return <p className="error">No Articles Found</p>
-      }
+  
 
       if(isLoading===true){
         return(
