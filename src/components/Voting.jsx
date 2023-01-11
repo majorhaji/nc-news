@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { incrementVotes} from "../api";
 const Voting = ({votes, article_id}) => {
     const [upVote, setUpvote] = useState("upvote");
@@ -8,8 +8,6 @@ const Voting = ({votes, article_id}) => {
   const [downVoteClicked, setDownClicked] = useState();
 
 
-  useEffect(() => {
-}, [currVote])
 const handleUpvote = () => {
   if (!upVoteClicked) {
     setDownClicked(false);
@@ -46,10 +44,8 @@ const handleDownvote = () => {
     return (
         <aside className="votes">
         <span
-          class={upVote}
-          onClick={() => {
-            handleUpvote();
-          }}
+          className={upVote}
+          onClick={handleUpvote}
         >
           <svg width="36" height="36">
             <path d="M2 14h32L18 0 10z" fill="currentColor"></path>
@@ -58,9 +54,7 @@ const handleDownvote = () => {
         <p>{currVote}</p>
         <span
           class={downVote}
-          onClick={() => {
-            handleDownvote();
-          }}
+          onClick={handleDownvote}
         >
           <svg width="36" height="36">
             <path d="M2 10h32L18 26 2 10z" fill="currentColor"></path>
