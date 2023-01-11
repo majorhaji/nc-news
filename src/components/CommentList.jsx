@@ -13,7 +13,7 @@ const CommentList = ({article_id}) => {
         setLoading(true);
         getCommentsById(article_id)  
         .then(({comments}) => {
-          setComments(comments)
+          
           setLoading(false);
           comments.map((comment) => {
             if(moment().diff(comment.created_at) < 70000){
@@ -22,6 +22,7 @@ const CommentList = ({article_id}) => {
               comment.class="comment"
             }
           })
+          setComments(comments)
         }).catch(err => console.log(err))
     }, [userPost])
     
@@ -30,6 +31,7 @@ const CommentList = ({article_id}) => {
           <p className="loading">Loading...</p>
         )
       }
+    
 
 
     return (
@@ -47,7 +49,7 @@ const CommentList = ({article_id}) => {
                     </section>
                   )
                 })}
-                <PostComment article_id={article_id} setUserPost={setUserPost}/>
+                <PostComment article_id={article_id} setComments={setComments}setUserPost={setUserPost} isLoading={isLoading}/>
               </article>
     )
 }

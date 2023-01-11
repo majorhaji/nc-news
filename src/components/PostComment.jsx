@@ -1,15 +1,16 @@
 import {postCommentById} from '../api'
-import { useState } from 'react';
-const PostComment = ({article_id, setUserPost}) => {
-    const [posted, setPosted] = useState(false);
-    
-
+// import { useState } from 'react';
+const PostComment = ({article_id, setUserPost, setComments, isLoading}) => {
     const postComment = (event) => {
         event.preventDefault()
         const newComment = event.target[1].value
-        setUserPost(newComment)
-        postCommentById(article_id, newComment)
-        setPosted(true);
+        
+       
+        postCommentById(article_id, newComment).then(()=> {
+            setUserPost(newComment)
+        setComments(comments => [...comments, newComment])
+
+        })
     }
  
     return(
