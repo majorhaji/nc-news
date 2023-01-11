@@ -22,4 +22,7 @@ export function getCommentsById(article_id) {
   });
 }
 
-export default { getArticles, getArticleById, getCommentsById };
+export function incrementVotes(article_id, vote) {
+  return api.patch(`/api/articles/${article_id}`, { inc_votes: vote });
+}
+export default { getArticles, getArticleById, getCommentsById, incrementVotes };

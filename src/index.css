@@ -135,3 +135,33 @@ h4{
   grid-area: body;
   padding: 20px;
 }
+
+.upvote {
+  display: inline-block;
+  cursor: pointer;
+  color: #687074;
+  height: 21px;
+  margin-top: 10px;
+} 
+
+.upvote svg{
+  display: block;
+}
+
+
+.upvoted{
+  color: #f48024;
+  
+}
+
+.downvote {
+  display: inline-block;
+  cursor: pointer;
+  color: #687074
+} 
+
+
+.downvoted {
+  color: #0796f5
+}
+

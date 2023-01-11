@@ -5,7 +5,7 @@ const CommentList = ({article_id}) => {
     const [isLoading, setLoading] = useState(true);
     const [comments, setComments] = useState([])
 
-    console.log(article_id)
+  
 
     useEffect(() => {
         setLoading(true);
