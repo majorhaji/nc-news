@@ -19,7 +19,7 @@ const Article = () => {
       setLoading(false);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, );
 
   if (isLoading === true) {
     return <p className="loading">Loading...</p>;

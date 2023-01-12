@@ -25,4 +25,17 @@ export function getCommentsById(article_id) {
 export function incrementVotes(article_id, vote) {
   return api.patch(`/api/articles/${article_id}`, { inc_votes: vote });
 }
+
+export function postCommentById(article_id, post) {
+  return api
+    .post(`/api/articles/${article_id}/comments`, {
+      username: "tickle122",
+      body: post,
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((err) => console.log(err));
+}
+
 export default { getArticles, getArticleById, getCommentsById, incrementVotes };
