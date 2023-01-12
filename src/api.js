@@ -25,4 +25,23 @@ export function getCommentsById(article_id) {
 export function incrementVotes(article_id, vote) {
   return api.patch(`/api/articles/${article_id}`, { inc_votes: vote });
 }
-export default { getArticles, getArticleById, getCommentsById, incrementVotes };
+
+export function getTopics() {
+  return api.get(`/api/topics`).then(({ data }) => {
+    return data;
+  });
+}
+
+export function getArticlesByTopic(topic) {
+  return api.get(`/api/articles?topic=${topic}`).then(({ data }) => {
+    return data;
+  });
+}
+export default {
+  getArticles,
+  getArticleById,
+  getCommentsById,
+  incrementVotes,
+  getArticlesByTopic,
+  getTopics,
+};
