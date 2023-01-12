@@ -33,6 +33,10 @@ code {
   align-self:stretch;
 }
 
+.topic-nav{
+  color: white;
+}
+
 .loading{
   background-color: rgb(49, 148, 240);
 }
@@ -41,6 +45,10 @@ code {
   background-color: red;
 }
 
+a{
+ text-decoration: none;
+ color: inherit
+}
 .article{
 
   border: solid black 1px;
@@ -59,10 +67,6 @@ code {
   border: solid grey 1px;
 }
 
- a{
-  text-decoration: none;
-  color: inherit
-}
 
 :hover.article a{
   text-decoration:underline;
@@ -95,15 +99,68 @@ code {
   padding: 20px;
 }
 
+.article-info{
+  font-size: 12px;
+}
+
 .topic{
   font-weight: bold;
   font-size: 15px;
   align-self: flex-start;
 }
 
-.article-info{
-  font-size: 12px;
+/* colours for topic pages */
+
+/* coding  */
+
+.coding {
+  border: solid rgb(243, 243, 243) 1px;
+  background-color: rgb(2, 0, 100);
+  color: rgb(255, 255, 255);
 }
+
+:hover.coding {
+  border: solid rgb(0, 160, 253) 1px;
+}
+
+.coding-votes{
+  background-color: #000000;
+}
+
+/* cooking */
+.cooking {
+  border: solid rgb(199, 64, 64) 1px;
+  
+  background-color: rgb(253, 186, 148);
+  color: rgb(104, 0, 0);
+}
+
+:hover.cooking {
+border: solid rgb(235, 167, 140) 1px;
+}
+
+.cooking-votes{
+  background-color: #fc5b33;
+}
+
+/* football */
+
+.football{
+  border: solid rgb(255, 255, 255) 1px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 136, 18);
+}
+
+:hover.football {
+  border: solid rgb(0, 136, 18) 1px;
+}
+
+.football-votes{
+  background-color: rgb(88, 245, 109);
+  color: black;
+}
+
+/* ------------------------------*/
 
 h4{
   overflow-wrap: break-word;

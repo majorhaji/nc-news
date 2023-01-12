@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import {getArticles} from "../api";
 import {Link} from 'react-router-dom';
+import moment from 'moment'
 const ArticleList = () => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setLoading] = useState(true);
-  const date = new Date();
-
-  const currentYear = date.getFullYear();
-
+  
   useEffect(() => {
     setLoading(true);
     getArticles().then((articles) => {
@@ -26,9 +24,9 @@ const ArticleList = () => {
   return (
     <main className="article-list">
       {articles.map((article) => {
-        const timestamp = article.created_at.slice(0,4); 
+        const timestamp = article.created_at
 
-         let articleAge = currentYear-  parseInt(timestamp)
+        let articleAge = moment().diff(timestamp)
 
          articleAge > 1 ? articleAge+= ` years ago` : articleAge+= ` year ago`
         return (

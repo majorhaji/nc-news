@@ -26,6 +26,20 @@ export function incrementVotes(article_id, vote) {
   return api.patch(`/api/articles/${article_id}`, { inc_votes: vote });
 }
 
+export function getTopics() {
+  return api.get(`/api/topics`).then(({ data }) => {
+    return data;
+  });
+}
+
+
+export function getArticlesByTopic(topic) {
+  return api.get(`/api/articles?topic=${topic}`).then(({ data }) => {
+    return data;
+  });
+}
+
+
 export function postCommentById(article_id, post) {
   return api
     .post(`/api/articles/${article_id}/comments`, {
@@ -36,6 +50,20 @@ export function postCommentById(article_id, post) {
       console.log(response);
     })
     .catch((err) => console.log(err));
-}
+    
+    
 
-export default { getArticles, getArticleById, getCommentsById, incrementVotes };
+export default {
+  getArticles,
+  getArticleById,
+  getCommentsById,
+  incrementVotes,
+  getArticlesByTopic,
+  getTopics,
+  postCommentById
+};
+
+
+
+
+
