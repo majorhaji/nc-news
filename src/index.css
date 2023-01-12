@@ -38,6 +38,10 @@ code {
 }
 
 .loading{
+  background-color: rgb(49, 148, 240);
+}
+
+.error{
   background-color: red;
 }
 
@@ -180,6 +184,27 @@ h4{
 
 }
 
+.new-comment{
+
+  border: solid black 1px;
+  margin: 0px 20px;
+
+  border-radius: 4px;
+  max-width: 850px;
+  background-color: rgb(38, 255, 111);
+  color: rgb(26, 25, 25);
+  display: grid;
+  grid-template-areas: "votes info info"
+  "votes body body"
+  "votes body body";
+  font-size: smaller ;
+
+}
+
+.new-comment aside{
+  background-color: rgb(1, 248, 83);
+  color: rgb(26, 25, 25);
+}
 .comment-info{
   grid-area: info;
   font-size: 12px;

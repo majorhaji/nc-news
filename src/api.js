@@ -32,11 +32,27 @@ export function getTopics() {
   });
 }
 
+
 export function getArticlesByTopic(topic) {
   return api.get(`/api/articles?topic=${topic}`).then(({ data }) => {
     return data;
   });
 }
+
+
+export function postCommentById(article_id, post) {
+  return api
+    .post(`/api/articles/${article_id}/comments`, {
+      username: "tickle122",
+      body: post,
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((err) => console.log(err));
+    
+    
+
 export default {
   getArticles,
   getArticleById,
@@ -44,4 +60,10 @@ export default {
   incrementVotes,
   getArticlesByTopic,
   getTopics,
+  postCommentById
 };
+
+
+
+
+
