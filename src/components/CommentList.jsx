@@ -3,11 +3,12 @@ import {useEffect, useState } from 'react';
 import PostComment from './PostComment';
 import moment from 'moment';
 
+
 const CommentList = ({article_id}) => {
     const [isLoading, setLoading] = useState(true);
     const [comments, setComments] = useState([])
-    const [userPost, setUserPost] = useState()
-
+    const [userPost, setUserPost] = useState("")
+    const [error, setError] = useState(false)
 
     useEffect(() => {
         setLoading(true);
@@ -23,16 +24,25 @@ const CommentList = ({article_id}) => {
             }
           })
           setComments(comments)
-        }).catch(err => console.log(err))
-    }, [userPost])
-    
-    if(isLoading){
+        }).catch(err => {
+          if(err.code==="ERR_NETWORK"){
+            setError(true);
+           
+          }
+        })
+    }, [userPost, error])
+
+    if(error){
+      return(
+        <p className='error'> Error, please check internet connection</p>
+      )
+
+    }else if(isLoading){
         return(
           <p className="loading">Loading...</p>
         )
       }
     
-
 
     return (
         <article className="comments">
@@ -49,7 +59,9 @@ const CommentList = ({article_id}) => {
                     </section>
                   )
                 })}
-                <PostComment article_id={article_id} setComments={setComments}setUserPost={setUserPost} isLoading={isLoading}/>
+
+                
+                <PostComment article_id={article_id} setComments={setComments}setUserPost={setUserPost}/>
               </article>
     )
 }
