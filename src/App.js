@@ -9,8 +9,6 @@ import TopicNav from "./components/TopicNav";
 function App() {
   return (
     <BrowserRouter>
-      <Header />
-      <TopicNav />
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/article/:article_id" element={<ArticlePage />}></Route>

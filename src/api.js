@@ -10,6 +10,26 @@ export function getArticles() {
   });
 }
 
+export function getSortedArticles(sort, order) {
+  let endpoint = `/api/articles?`;
+
+  endpoint += `sort_by=${sort}&order=${order}`;
+
+  return api.get(endpoint).then(({ data: { articles } }) => {
+    return articles;
+  });
+}
+
+export function getSortedTopicArticles(topic, sort, order) {
+  let endpoint = `/api/articles?`;
+
+  endpoint += `topic=${topic}&sort_by=${sort}&order=${order}`;
+
+  return api.get(endpoint).then(({ data: { articles } }) => {
+    return articles;
+  });
+}
+
 export function getArticleById(article_id) {
   return api.get(`/api/articles/${article_id}`).then(({ data }) => {
     return data;
@@ -32,13 +52,11 @@ export function getTopics() {
   });
 }
 
-
 export function getArticlesByTopic(topic) {
   return api.get(`/api/articles?topic=${topic}`).then(({ data }) => {
     return data;
   });
 }
-
 
 export function postCommentById(article_id, post) {
   return api
@@ -50,8 +68,7 @@ export function postCommentById(article_id, post) {
       console.log(response);
     })
     .catch((err) => console.log(err));
-    
-    
+}
 
 export default {
   getArticles,
@@ -60,10 +77,6 @@ export default {
   incrementVotes,
   getArticlesByTopic,
   getTopics,
-  postCommentById
+  postCommentById,
+  getSortedArticles,
 };
-
-
-
-
-
