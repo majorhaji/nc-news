@@ -85,6 +85,10 @@ a{
    width: 40px;
 }
 
+.vote{
+  color: orange;
+}
+
 .article-info{
   grid-area: info;
   display: flex;

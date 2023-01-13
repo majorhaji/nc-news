@@ -1,24 +1,31 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { getArticlesByTopic } from "../api";
+import { getArticlesByTopic, getSortedTopicArticles } from "../api";
 import { Link } from "react-router-dom";
 import moment from 'moment';
-const Topic = () => {
+const Topic = ({sort, order}) => {
 
     const {topic}= useParams()
 
     const [articles, setArticles] = useState([]);
     const [isLoading, setLoading] = useState(true);
     useEffect(() => {
-        getArticlesByTopic(topic).then(({articles}) => {
-            console.log(articles, "<<articles")
-            setLoading(false);
-            setArticles(articles);
-        }).catch((err) => {
-            console.log(err);
+      if(sort){
+        getSortedTopicArticles(topic, sort, order).then((articles) => {
+         setArticles(articles);
+         setLoading(false);
         })
+     } else{
+      getArticlesByTopic(topic).then(({articles}) => {
+        setLoading(false);
+        setArticles(articles);
+    }).catch((err) => {
+        console.log(err);
+    })
+     }
+        
 
-    }, [])
+    }, [sort, order])
 
     if(isLoading){
         return(
@@ -38,7 +45,7 @@ const Topic = () => {
         return (
           <article className={`${topic} article`} key={article.article_id}>
             <h4 className={`${topic}-title title`}><Link to={`/article/${article.article_id}`}>{article.title}</Link></h4>
-            <aside className={`${topic}-votes votes`}>{article.votes}</aside>
+            <aside className={`${topic}-votes votes`}><p className="vote">{article.votes}</p><p className="comment-count">Comments:<br></br>{article.comment_count}</p></aside>
             <section className={`${topic}-info article-info`}>
             <p className={`${topic}-topic`}>#{article.topic}</p>
               <p className={`${topic}-author`}>Posted by {article.author}</p>
