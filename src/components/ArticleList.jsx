@@ -18,7 +18,7 @@ const ArticleList = ({sort, order}) => {
       getArticles().then((articles) => {
         setArticles(articles);
         setLoading(false);
-      }).catch(err => console.log(err))
+      })
     }
     
   }, [sort, order]);

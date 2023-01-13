@@ -19,8 +19,6 @@ const Topic = ({sort, order}) => {
       getArticlesByTopic(topic).then(({articles}) => {
         setLoading(false);
         setArticles(articles);
-    }).catch((err) => {
-        console.log(err);
     })
      }
         
